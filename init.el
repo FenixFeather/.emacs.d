@@ -1,0 +1,256 @@
+;; use-package setup
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(require 'bind-key)
+
+;; Ace-window
+(use-package ace-window
+  :ensure t
+  :bind (("M-[" . ace-window)
+	 ("C-x o" . ace-window)))
+
+;; Anaconda
+(use-package anaconda-mode
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode))
+
+;; Auctex
+(use-package tex
+  :ensure auctex
+  :config
+  (setq reftex-plug-into-AUCTeX t)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
+
+;; Avy
+(use-package avy
+  :ensure t
+  :bind (("C-;" . avy-goto-char)
+	 ("C-'" . avy-goto-char-2)
+	 ("M-g g" . avy-goto-line)
+	 ("C-M-g" . avy-goto-line)
+	 ("C-," . avy-goto-word-1)
+	 ("M-g e" . avy-goto-word-0))
+  :config
+  (avy-setup-default))
+
+;; Company
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode)
+  (setq company-idle-delay 0))
+
+(use-package company-anaconda
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-anaconda))
+
+(use-package company-auctex
+  :mode "\\.tex\\'"
+  :ensure t)
+
+(use-package company-bibtex
+  :ensure t)
+
+;; csv-mode
+(use-package csv-mode
+  :mode "\\.csv\\'"
+  :ensure t)
+
+;; Dockerfile
+(use-package dockerfile-mode
+  :ensure t)
+
+;; dtrt
+(use-package dtrt-indent
+  :mode "\\.js\\'"
+  :ensure t)
+
+;; JavaScript
+(use-package js2-mode
+  :ensure t)
+
+(use-package json-mode
+  :mode ("\\.eslintrc.*$" "\\.babelrc$")
+  :ensure t)
+
+(use-package rjsx-mode
+  :mode "\\.js\\'"
+  :ensure t)
+
+;; Julia
+(use-package julia-mode
+  :mode "\\.jl\\'"
+  :ensure t)
+
+;; Flycheck
+(use-package flycheck
+  :ensure t
+  :config
+  (require 'flycheck)
+  ;; disable jshint since we prefer eslint checking
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
+  (setq-default flycheck-disabled-checkers
+		(append flycheck-disabled-checkers
+			'(javascript-jshint json-python-json javascript-jshint
+					    javascript-gjslint javascript-jscs)))
+
+  (defun my-js2-mode-hook ()
+    (flycheck-mode)
+    (setq js2-basic-offset 2)
+    )
+  (add-hook 'js2-mode-hook 'my-js2-mode-hook)
+
+  ;; use eslint with web-mode for jsx files
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (add-hook 'python-mode-hook 'flycheck-mode))
+
+;; Haskell
+(use-package haskell-mode
+  :ensure t
+  :mode "\\.hs\\'"
+  :config
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+
+;; Magit
+(use-package magit
+  :ensure t)
+
+;; Markdown
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'" "\\.mkdn\\'"))
+
+;; Org mode
+(use-package org-mode
+  :config
+  (visual-line-mode 1)
+  (add-hook 'org-mode-hook 'flyspell-mode))
+
+;; Paredit
+(use-package paredit
+  :ensure t)
+
+;; Powershell
+(use-package powershell
+  :ensure t)
+
+;; Smex
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command)))
+
+;; ssh-agency
+(use-package ssh-agency
+  :ensure t
+  :config
+  (setenv "SSH_ASKPASS" "git-gui--askpass"))
+
+;; toml
+(use-package toml-mode
+  :ensure t
+  :mode "\\.toml\\'")
+
+;; with-editor
+(use-package with-editor
+  :ensure t)
+
+;; yaml
+(use-package yaml-mode
+  :ensure t)
+
+;; Zenburn
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (load-theme 'zenburn t))
+
+;; Non-package options
+(setq visible-bell 1)
+(electric-pair-mode 1)
+(show-paren-mode 1)
+(require 'ido)
+(ido-mode t)
+(setq-default ispell-program-name "aspell")
+
+(setq c-default-style "k&r"
+          c-basic-offset 4)
+
+(defun my-c++-mode-hook ()
+  (c-set-style "k&r")        ; use my-style defined above
+  (auto-fill-mode)         
+  (c-toggle-auto-hungry-state 1)
+  (electric-pair-mode 1))
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+;;;Windows backup
+(setq version-control t ;; Use version numbers for backups.
+      kept-new-versions 10 ;; Number of newest versions to keep.
+      kept-old-versions 0 ;; Number of oldest versions to keep.
+      delete-old-versions t ;; Don't ask to delete excess backup versions.
+      backup-by-copying t) ;; Copy all files, don't rename them.
+  ;; Default and per-save backups go here:
+(setq backup-directory-alist '(("" . "~/.emacs.d/backup/per-save")))
+
+(defun force-backup-of-buffer ()
+  ;; Make a special "per session" backup at the first save of each
+  ;; emacs session.
+  (when (not buffer-backed-up)
+    ;; Override the default parameters for per-session backups.
+    (let ((backup-directory-alist '(("" . "~/.emacs.d/backup/per-session")))
+	  (kept-new-versions 3))
+      (backup-buffer)))
+  ;; Make a "per save" backup on each save.  The first save results in
+  ;; both a per-session and a per-save backup, to keep the numbering
+  ;; of per-save backups consistent.
+  (let ((buffer-backed-up nil))
+    (backup-buffer)))
+
+(add-hook 'before-save-hook  'force-backup-of-buffer)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-PDF-mode t)
+ '(doc-view-continuous t)
+ '(doc-view-dvipdf-program "dvipdfm")
+ '(doc-view-ghostscript-program "gswin64c")
+ '(doc-view-resolution 300)
+ '(dtrt-indent-mode t nil (dtrt-indent))
+ '(inferior-julia-program-name "julia")
+ '(longlines-wrap-follows-window-size t)
+ '(org-indent-mode-turns-off-org-adapt-indentation nil)
+ '(org-startup-indented t)
+ '(org-startup-truncated nil)
+ '(preview-gs-command "GSWIN64C.EXE")
+ '(reftex-cite-prompt-optional-args (quote maybe))
+ '(show-paren-mode t))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
+(put 'downcase-region 'disabled nil)
