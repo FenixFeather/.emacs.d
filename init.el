@@ -30,6 +30,7 @@
 ;; Auctex
 (use-package tex
   :ensure auctex
+  :mode "\\.tex\\'"
   :config
   (setq reftex-plug-into-AUCTeX t)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
@@ -63,6 +64,7 @@
   :ensure t)
 
 (use-package company-bibtex
+  :mode "\\.bib\\'"
   :ensure t)
 
 ;; csv-mode
@@ -72,6 +74,7 @@
 
 ;; Dockerfile
 (use-package dockerfile-mode
+  :defer t
   :ensure t)
 
 ;; dtrt
@@ -81,6 +84,7 @@
 
 ;; JavaScript
 (use-package js2-mode
+  :defer t
   :ensure t)
 
 (use-package json-mode
@@ -147,6 +151,7 @@
 
 ;; Powershell
 (use-package powershell
+  :defer t
   :ensure t)
 
 ;; Smex
@@ -173,6 +178,7 @@
 
 ;; yaml
 (use-package yaml-mode
+  :defer t
   :ensure t)
 
 ;; Zenburn
