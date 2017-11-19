@@ -3,6 +3,11 @@
 
 # Packaging
 .cask
+anaconda-mode/
+elpa/
+ido.last
+server/
+smex-items
 
 # Backup files
 *~
