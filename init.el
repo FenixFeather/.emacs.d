@@ -176,6 +176,11 @@
 (use-package with-editor
   :ensure t)
 
+;; web-mode
+(use-package web-mode
+  :ensure t
+  :mode ("\\.html\\'" "\\.php\\'"))
+
 ;; yaml
 (use-package yaml-mode
   :defer t
