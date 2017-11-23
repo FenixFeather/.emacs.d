@@ -46,6 +46,10 @@
 	 ("M-g e" . avy-goto-word-0))
   :config
   (avy-setup-default))
+;; cdlatex
+(use-package cdlatex
+  :ensure t
+  :mode "\\.tex\\'")
 
 ;; Company
 (use-package company
