@@ -144,10 +144,12 @@
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'" "\\.mkdn\\'"))
 
 ;; Org mode
-(use-package org-mode
+(use-package org
   :config
-  (visual-line-mode 1)
-  (add-hook 'org-mode-hook 'flyspell-mode))
+  (defun my-org-mode-hook ()
+    (visual-line-mode 1)
+    (flyspell-mode))
+  (add-hook 'org-mode-hook 'my-org-mode-hook))
 
 ;; Paredit
 (use-package paredit
