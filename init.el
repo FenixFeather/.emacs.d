@@ -30,7 +30,7 @@
 ;; Auctex
 (use-package tex
   :ensure auctex
-  :mode "\\.tex\\'"
+  :defer t
   :config
   (setq reftex-plug-into-AUCTeX t)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
@@ -47,9 +47,9 @@
   :config
   (avy-setup-default))
 ;; cdlatex
-(use-package cdlatex
-  :ensure t
-  :mode "\\.tex\\'")
+(use-package cdlatex-mode
+  :ensure cdlatex
+  :defer t)
 
 ;; Company
 (use-package company
@@ -64,12 +64,15 @@
   (add-to-list 'company-backends 'company-anaconda))
 
 (use-package company-auctex
-  :mode "\\.tex\\'"
-  :ensure t)
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'LaTeX-mode-hook #'company-auctex-init))
 
 (use-package company-bibtex
-  :mode "\\.bib\\'"
-  :ensure t)
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-bibtex))
 
 ;; csv-mode
 (use-package csv-mode
