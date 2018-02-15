@@ -181,6 +181,13 @@
   :ensure t
   :mode "\\.toml\\'")
 
+;; vue
+(use-package vue-mode
+  :ensure t
+  :mode "\\.vue\\'"
+  :config
+  (setq js-indent-level 2))
+
 ;; with-editor
 (use-package with-editor
   :ensure t)
