@@ -215,6 +215,7 @@
 (require 'ido)
 (ido-mode t)
 (setq-default ispell-program-name "aspell")
+(setq scroll-preserve-screen-position 'always)
 
 (setq c-default-style "k&r"
           c-basic-offset 4)
