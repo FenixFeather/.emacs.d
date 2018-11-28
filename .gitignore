@@ -14,3 +14,4 @@ smex-items
 
 # Undo-tree save-files
 *.~undo-tree
+/tramp

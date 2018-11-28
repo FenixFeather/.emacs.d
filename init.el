@@ -33,7 +33,8 @@
   :defer t
   :config
   (setq reftex-plug-into-AUCTeX t)
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode))
 
 ;; Avy
 (use-package avy
@@ -145,6 +146,18 @@
 (use-package markdown-mode
   :ensure t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'" "\\.mkdn\\'"))
+
+;; NeoTree
+(use-package neotree
+  :ensure t
+  :init
+  (defun neobush ()
+    "Hide NeoTree's scrollbar"
+    (interactive)
+    (neotree)
+    (set-window-scroll-bars nil nil))
+  :bind ("C-c C-n" . neobush)
+  )
 
 ;; Org mode
 (use-package org
