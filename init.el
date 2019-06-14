@@ -226,11 +226,10 @@
   :defer t
   :ensure t)
 
-;; Zenburn
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn t))
+;; theme
+(use-package spacemacs-common
+  :ensure spacemacs-theme
+  :config (load-theme 'spacemacs-dark t))
 
 ;; Non-package options
 (setq visible-bell 1)
@@ -295,6 +294,9 @@
  '(org-indent-mode-turns-off-org-adapt-indentation nil)
  '(org-startup-indented t)
  '(org-startup-truncated nil)
+ '(package-selected-packages
+   (quote
+    (spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids use-package toml-mode ssh-agency smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
  '(preview-gs-command "GSWIN64C.EXE")
  '(reftex-cite-prompt-optional-args (quote maybe))
  '(show-paren-mode t))
