@@ -15,3 +15,5 @@ smex-items
 # Undo-tree save-files
 *.~undo-tree
 /tramp
+/network-security.data
+transient/
