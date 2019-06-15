@@ -221,6 +221,7 @@
   :ensure t
   :mode "\\.vue\\'"
   :config
+  (setq indent-tabs-mode nil)
   (setq js-indent-level 2))
 
 ;; with-editor
