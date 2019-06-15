@@ -1,3 +1,8 @@
+;; Top level stuff
+;; On Windows, add 'emacsclientw -n -a ""' for client
+;; 'runemacs.exe --daemon' on startup
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; use-package setup
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -185,6 +190,7 @@
   :ensure t
   :config
   (setq sml/theme 'atom-one-dark)
+  (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
 ;; Smex
@@ -311,7 +317,7 @@
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
-    (smart-mode-line-atom-one-dark-theme smart-mode-line spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids use-package toml-mode ssh-agency smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
+    (smart-mode-line-atom-one-dark-theme smart-mode-line spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids toml-mode ssh-agency smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
  '(preview-gs-command "GSWIN64C.EXE")
  '(reftex-cite-prompt-optional-args (quote maybe))
  '(show-paren-mode t))
