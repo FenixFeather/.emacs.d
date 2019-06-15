@@ -143,6 +143,32 @@
   :config
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
 
+;; Ivy, Swiper, and Counsel
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :bind (("C-c C-r" . 'ivy-resume)
+         :map ivy-minibuffer-map
+         ("C-j" . ivy-done)
+         ("RET" . ivy-alt-done))
+  :config
+  (setq ivy-count-format "%d/%d ")
+  (setq ivy-extra-directories nil)
+  (ivy-mode 1))
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . 'swiper)))
+
+(use-package counsel
+  :ensure t
+  :diminish counsel-mode
+  :demand
+  :config
+  (counsel-mode 1)
+  :bind (("M-x" . counsel-M-x)
+         ("M-<left>" . 'pop-to-mark-command)))
+
 ;; Magit
 (use-package magit
   :ensure t)
@@ -253,8 +279,6 @@
 (setq visible-bell 1)
 (electric-pair-mode 1)
 (show-paren-mode 1)
-(require 'ido)
-(ido-mode t)
 (setq-default ispell-program-name "aspell")
 (setq scroll-preserve-screen-position 'always)
 
@@ -317,7 +341,7 @@
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
-    (smart-mode-line-atom-one-dark-theme smart-mode-line spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids toml-mode ssh-agency smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
+    (counsel swiper ivy smart-mode-line-atom-one-dark-theme smart-mode-line spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids toml-mode ssh-agency smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
  '(preview-gs-command "GSWIN64C.EXE")
  '(reftex-cite-prompt-optional-args (quote maybe))
  '(show-paren-mode t))
