@@ -237,16 +237,12 @@
   :ensure t
   :mode "\\.toml\\'")
 
-;; visual-regexp
-(use-package visual-regexp
-  :ensure t)
-
 ;; visual-regexp-steroids
 (use-package visual-regexp-steroids
   :ensure t
-  :after visual-regexp
+  :demand
   :bind (("C-M-$" . vr/replace)
-	 ("C-M-^" . vr/query-replace)))
+	 ("C-M-%" . vr/query-replace)))
 
 ;; vue
 (use-package vue-mode
