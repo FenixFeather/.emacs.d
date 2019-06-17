@@ -20,6 +20,9 @@
 
 (require 'bind-key)
 
+(use-package diminish
+  :ensure t)
+
 ;; Ace-window
 (use-package ace-window
   :ensure t
