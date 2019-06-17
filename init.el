@@ -230,9 +230,10 @@
 
 ;; ssh-agency
 (use-package ssh-agency
-  :if (file-exists-p "~/.ssh/id_rsa.pub")
   :ensure t
   :config
+  (unless (file-exists-p "~/.ssh/id_rsa.pub")
+    (remove-hook 'magit-credential-hook 'ssh-agency-ensure))
   (setenv "SSH_ASKPASS" "git-gui--askpass"))
 
 ;; toml
