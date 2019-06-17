@@ -17,9 +17,6 @@
  '(org-indent-mode-turns-off-org-adapt-indentation nil)
  '(org-startup-indented t)
  '(org-startup-truncated nil)
- '(package-selected-packages
-   (quote
-    (counsel swiper ivy smart-mode-line-atom-one-dark-theme smart-mode-line spacemacs-theme neotree zenburn-theme yaml-mode web-mode vue-mode visual-regexp-steroids toml-mode smex rjsx-mode powershell paredit markdown-mode julia-mode json-mode haskell-mode flycheck dtrt-indent dockerfile-mode csv-mode company-bibtex company-auctex company-anaconda cdlatex ace-window)))
  '(preview-gs-command "GSWIN64C.EXE")
  '(reftex-cite-prompt-optional-args (quote maybe))
  '(show-paren-mode t))

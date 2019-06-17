@@ -316,8 +316,25 @@
 
 (add-hook 'before-save-hook  'force-backup-of-buffer)
 
+;; Custom
 (if (eq system-type 'windows-nt)
     (setq custom-file "~/.emacs.d/custom-windows.el")
   (setq custom-file "~/.emacs.d/custom.el"))
 
+(setq package-selected-packages-file "~/.emacs.d/package-selected-packages.el")
+
+(defun package--save-selected-packages (&optional value)
+  "Set and save `package-selected-packages' to VALUE.
+
+The variable is saved on ~/.emacs.d/package-selected-packages.el and its content is ordered alphabetically."
+  (when value
+    (setq package-selected-packages value))
+  ;; Sort alphabetically all symbols of package-selected-packages
+  (setf package-selected-packages (cl-sort package-selected-packages 'string-lessp))
+  (if after-init-time
+      (with-temp-file package-selected-packages-file
+	(insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
+    (add-hook 'after-init-hook #'package--save-selected-packages)))
+
 (load custom-file :noerror)
+(load package-selected-packages-file :noerror)
