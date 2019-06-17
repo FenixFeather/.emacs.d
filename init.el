@@ -227,6 +227,7 @@
 
 ;; ssh-agency
 (use-package ssh-agency
+  :if (file-exists-p "~/.ssh/id_rsa.pub")
   :ensure t
   :config
   (setenv "SSH_ASKPASS" "git-gui--askpass"))
