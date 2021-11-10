@@ -64,7 +64,8 @@
   :ensure t
   :config
   (global-company-mode)
-  (setq company-idle-delay 0))
+  (setq company-idle-delay 0)
+  (setq company-dabbrev-downcase nil))
 
 (use-package company-anaconda
   :ensure t
@@ -170,6 +171,17 @@
   (counsel-mode 1)
   :bind (("M-x" . counsel-M-x)
          ("M-<left>" . 'pop-to-mark-command)))
+
+(use-package counsel-tramp
+  :ensure t
+  )
+
+;; Jinja
+(use-package mmm-jinja2
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml.jinja\\'" . yaml-mode))
+  (mmm-add-mode-ext-class 'yaml-mode "\\.yml.jinja\\'" 'jinja2))
 
 ;; Magit
 (use-package magit
@@ -280,6 +292,7 @@
 (show-paren-mode 1)
 (setq-default ispell-program-name "aspell")
 (setq scroll-preserve-screen-position 'always)
+(setq comint-prompt-read-only t)
 
 (setq c-default-style "k&r"
           c-basic-offset 4)
