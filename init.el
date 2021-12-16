@@ -26,6 +26,7 @@
 (use-package ace-window
   :ensure t
   :bind (("M-[" . ace-window)
+         ("M-o" . ace-window)
 	 ("C-x o" . ace-window)))
 
 ;; Anaconda
