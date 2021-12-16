@@ -126,9 +126,9 @@
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
   (setq-default flycheck-disabled-checkers
-		(append flycheck-disabled-checkers
-			'(javascript-jshint json-python-json javascript-jshint
-					    javascript-gjslint javascript-jscs)))
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint json-python-json javascript-jshint
+                                            javascript-gjslint javascript-jscs)))
 
   (defun my-js2-mode-hook ()
     (flycheck-mode)
@@ -245,7 +245,7 @@
 (use-package smex
   :ensure t
   :bind (("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
+         ("C-c C-c M-x" . execute-extended-command)))
 
 ;; ssh-agency
 (use-package ssh-agency
@@ -265,7 +265,7 @@
   :ensure t
   :demand
   :bind (("C-M-$" . vr/replace)
-	 ("C-M-%" . vr/query-replace)))
+         ("C-M-%" . vr/query-replace)))
 
 ;; vue
 (use-package vue-mode
@@ -295,7 +295,7 @@
   :defer t
   :init (add-hook 'after-make-frame-functions
                   (lambda (frame)
-		    (select-frame frame)
+                    (select-frame frame)
                     (load-theme 'spacemacs-dark t))))
 
 ;; Non-package options
@@ -312,13 +312,17 @@
 
 (defun my-c++-mode-hook ()
   (c-set-style "k&r")        ; use my-style defined above
-  (auto-fill-mode)         
+  (auto-fill-mode)
   (c-toggle-auto-hungry-state 1)
   (electric-pair-mode 1))
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+;; Whitespace
+(setq whitespace-style '(face trailing lines tabs big-indent empty))
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;;;Windows backup
 (setq version-control t ;; Use version numbers for backups.

@@ -9,6 +9,7 @@
  '(doc-view-ghostscript-program "gswin64c")
  '(doc-view-resolution 300)
  '(dtrt-indent-mode t nil (dtrt-indent))
+ '(electric-pair-mode t)
  '(highlight-indent-guides-method 'character)
  '(highlight-indent-guides-responsive 'stack)
  '(inferior-julia-program-name "julia")
@@ -20,7 +21,8 @@
  '(reftex-cite-prompt-optional-args 'maybe)
  '(show-paren-mode t)
  '(spacemacs-theme-comment-bg nil)
- '(spacemacs-theme-comment-italic t))
+ '(spacemacs-theme-comment-italic t)
+ '(whitespace-line-column 120))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
