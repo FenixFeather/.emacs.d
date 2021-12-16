@@ -146,6 +146,12 @@
   :config
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
 
+;; Highlight indent guides
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
 ;; Ivy, Swiper, and Counsel
 (use-package ivy
   :ensure t
@@ -282,9 +288,13 @@
   :ensure t)
 
 ;; theme
-(use-package spacemacs-common
-  :ensure spacemacs-theme
-  :config (load-theme 'spacemacs-dark t))
+(use-package spacemacs-theme
+  :ensure t
+  :defer t
+  :init (add-hook 'after-make-frame-functions
+                  (lambda (frame)
+		    (select-frame frame)
+                    (load-theme 'spacemacs-dark t))))
 
 ;; Non-package options
 (setq visible-bell 1)
@@ -293,6 +303,7 @@
 (setq-default ispell-program-name "aspell")
 (setq scroll-preserve-screen-position 'always)
 (setq comint-prompt-read-only t)
+(global-hl-line-mode +1)
 
 (setq c-default-style "k&r"
           c-basic-offset 4)
