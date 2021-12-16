@@ -150,7 +150,8 @@
 (use-package highlight-indent-guides
   :ensure t
   :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (add-hook 'text-mode-hook 'highlight-indent-guides-mode))
 
 ;; Ivy, Swiper, and Counsel
 (use-package ivy
