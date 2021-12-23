@@ -44,6 +44,12 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'flyspell-mode))
 
+;; Astyle
+(use-package astyle
+  :ensure t
+  :when (executable-find "astyle")
+  :hook (c-mode-common . astyle-on-save-mode))
+
 ;; Avy
 (use-package avy
   :ensure t
@@ -106,6 +112,8 @@
 
 (use-package json-mode
   :mode ("\\.eslintrc.*$" "\\.babelrc$")
+  :config
+  (setq js-indent-level 2)
   :ensure t)
 
 (use-package rjsx-mode
@@ -247,14 +255,6 @@
   :bind (("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
 
-;; ssh-agency
-(use-package ssh-agency
-  :ensure t
-  :config
-  (unless (file-exists-p "~/.ssh/id_rsa.pub")
-    (remove-hook 'magit-credential-hook 'ssh-agency-ensure))
-  (setenv "SSH_ASKPASS" "git-gui--askpass"))
-
 ;; toml
 (use-package toml-mode
   :ensure t
@@ -308,10 +308,12 @@
 (global-hl-line-mode +1)
 
 (setq c-default-style "k&r"
-          c-basic-offset 4)
+      c-basic-offset 4)
+
+(setq c-default-style "k&r"
+      c-basic-offset 4)
 
 (defun my-c++-mode-hook ()
-  (c-set-style "k&r")        ; use my-style defined above
   (auto-fill-mode)
   (c-toggle-auto-hungry-state 1)
   (electric-pair-mode 1))
