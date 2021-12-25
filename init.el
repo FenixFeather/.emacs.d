@@ -27,7 +27,7 @@
   :ensure t
   :bind (("M-[" . ace-window)
          ("M-o" . ace-window)
-	 ("C-x o" . ace-window)))
+         ("C-x o" . ace-window)))
 
 ;; Anaconda
 (use-package anaconda-mode
@@ -54,11 +54,12 @@
 (use-package avy
   :ensure t
   :bind (("C-;" . avy-goto-char)
-	 ("C-'" . avy-goto-char-2)
-	 ("M-g g" . avy-goto-line)
-	 ("C-M-g" . avy-goto-line)
-	 ("C-," . avy-goto-word-1)
-	 ("M-g e" . avy-goto-word-0))
+         ("C-'" . avy-goto-char-2)
+         ("M-g g" . avy-goto-line)
+         ("C-M-g" . avy-goto-line)
+         ("C-," . avy-goto-word-1)
+         ("M-g e" . avy-goto-word-0)
+         ("M-i" . avy-copy-line))
   :config
   (avy-setup-default))
 ;; cdlatex
@@ -152,8 +153,8 @@
 (use-package ggtags
   :ensure t
   :hook ((c-mode . ggtags-mode)
-	 (c++-mode . ggtags-mode)
-	 (java-mode . ggtags-mode)))
+         (c++-mode . ggtags-mode)
+         (java-mode . ggtags-mode)))
 
 ;; Haskell
 (use-package haskell-mode
@@ -302,6 +303,7 @@
 (setq comint-prompt-read-only t)
 (global-hl-line-mode +1)
 (setq lisp-indent-function 'common-lisp-indent-function)
+(setq-default indent-tabs-mode nil)
 
 (setq c-default-style "k&r"
       c-basic-offset 4)
@@ -340,7 +342,7 @@
   (when (not buffer-backed-up)
     ;; Override the default parameters for per-session backups.
     (let ((backup-directory-alist '(("" . "~/.emacs.d/backup/per-session")))
-	  (kept-new-versions 3))
+          (kept-new-versions 3))
       (backup-buffer)))
   ;; Make a "per save" backup on each save.  The first save results in
   ;; both a per-session and a per-save backup, to keep the numbering
@@ -367,7 +369,7 @@ The variable is saved on ~/.emacs.d/package-selected-packages.el and its content
   (setf package-selected-packages (cl-sort package-selected-packages 'string-lessp))
   (if after-init-time
       (with-temp-file package-selected-packages-file
-	(insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
+        (insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
     (add-hook 'after-init-hook #'package--save-selected-packages)))
 
 (load-file "~/.emacs.d/lsp.el")
