@@ -379,5 +379,6 @@ The variable is saved on ~/.emacs.d/package-selected-packages.el and its content
     (add-hook 'after-init-hook #'package--save-selected-packages)))
 
 (load-file "~/.emacs.d/lsp.el")
+(load-file "~/.emacs.d/evil.el")
 (load custom-file :noerror)
 (load package-selected-packages-file :noerror)
