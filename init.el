@@ -294,6 +294,14 @@
                     (select-frame frame)
                     (load-theme 'spacemacs-dark t))))
 
+;; undo-tree
+(use-package undo-tree
+    :ensure t
+    :bind (("M-/" . undo-tree-undo)
+           ("C-r" . undo-tree-redo))
+    :config
+    (global-undo-tree-mode))
+
 ;; Non-package options
 (setq visible-bell 1)
 (electric-pair-mode 1)
