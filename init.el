@@ -330,6 +330,9 @@
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
 ;; Whitespace
 (setq whitespace-style '(face trailing lines tabs big-indent empty))
 (add-hook 'prog-mode-hook 'whitespace-mode)
