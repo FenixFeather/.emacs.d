@@ -17,8 +17,6 @@
 (eval-when-compile
   (require 'use-package))
 
-(require 'bind-key)
-
 (use-package diminish
   :ensure t)
 
