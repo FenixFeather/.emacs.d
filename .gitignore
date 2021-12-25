@@ -18,3 +18,5 @@ smex-items
 /network-security.data
 transient/
 /package-selected-packages.el
+/.lsp-session-v1
+/.cache/

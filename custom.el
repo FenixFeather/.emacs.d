@@ -14,6 +14,7 @@
  '(highlight-indent-guides-responsive 'stack)
  '(inferior-julia-program-name "julia")
  '(longlines-wrap-follows-window-size t)
+ '(lsp-keymap-prefix "M-l")
  '(org-indent-mode-turns-off-org-adapt-indentation nil)
  '(org-startup-indented t)
  '(org-startup-truncated nil)

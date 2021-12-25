@@ -148,6 +148,13 @@
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
   (add-hook 'python-mode-hook 'flycheck-mode))
 
+;; ggtags
+(use-package ggtags
+  :ensure t
+  :hook ((c-mode . ggtags-mode)
+	 (c++-mode . ggtags-mode)
+	 (java-mode . ggtags-mode)))
+
 ;; Haskell
 (use-package haskell-mode
   :ensure t
@@ -306,6 +313,7 @@
 (setq scroll-preserve-screen-position 'always)
 (setq comint-prompt-read-only t)
 (global-hl-line-mode +1)
+(setq lisp-indent-function 'common-lisp-indent-function)
 
 (setq c-default-style "k&r"
       c-basic-offset 4)
@@ -371,5 +379,6 @@ The variable is saved on ~/.emacs.d/package-selected-packages.el and its content
 	(insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
     (add-hook 'after-init-hook #'package--save-selected-packages)))
 
+(load-file "~/.emacs.d/lsp.el")
 (load custom-file :noerror)
 (load package-selected-packages-file :noerror)
