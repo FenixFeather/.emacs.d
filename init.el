@@ -62,6 +62,7 @@
          ("M-i" . avy-copy-line))
   :config
   (avy-setup-default))
+
 ;; cdlatex
 (use-package cdlatex-mode
   :ensure cdlatex
@@ -299,8 +300,7 @@
     :ensure t
     :bind (("M-/" . undo-tree-undo)
            ("C-r" . undo-tree-redo))
-    :config
-    (global-undo-tree-mode))
+    :hook ((after-init . global-undo-tree-mode)))
 
 ;; Non-package options
 (setq visible-bell 1)
