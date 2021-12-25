@@ -215,18 +215,6 @@
   :ensure t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'" "\\.mkdn\\'"))
 
-;; NeoTree
-(use-package neotree
-  :ensure t
-  :init
-  (defun neobush ()
-    "Hide NeoTree's scrollbar"
-    (interactive)
-    (neotree)
-    (set-window-scroll-bars nil nil))
-  :bind ("C-c C-n" . neobush)
-  )
-
 ;; Org mode
 (use-package org
   :config
