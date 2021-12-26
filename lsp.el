@@ -3,6 +3,7 @@
 ;; which-key
 ;; For key suggestions when typing key commands
 (use-package which-key
+    :hook ((after-init . which-key-mode))
     :ensure t)
 
 ;; treemacs
@@ -48,15 +49,12 @@
     :ensure t
     :init
     :hook ((c-mode-common . lsp)
-	   (lsp-mode . lsp-enable-which-key-integration)
-	   (c++-mode . lsp)
-           )
-    :commands lsp
-    :config
-    )
+           (lsp-mode . lsp-enable-which-key-integration)
+           (c++-mode . lsp))
+    :commands lsp lsp-command-map
+    :config)
 
 (use-package lsp-ui :ensure t :commands lsp-ui-mode)
 (use-package lsp-ivy :ensure t :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :ensure t :commands lsp-treemacs-errors-list)
 
-(which-key-mode)
