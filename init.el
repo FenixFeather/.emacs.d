@@ -8,14 +8,16 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(package-initialize)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
+(condition-case nil
+    (require 'use-package)
+  (file-error
+   (require 'package)
+   (package-initialize)
+   (package-refresh-contents)
+   (package-install 'use-package)
+   (setq use-package-always-ensure t)
+   (require 'use-package)))
 
 (use-package diminish
   :ensure t)
@@ -383,21 +385,6 @@
 
 ;; avoid resizing
 (customize-set-variable 'even-window-sizes nil)
-
-(setq package-selected-packages-file "~/.emacs.d/package-selected-packages.el")
-
-(defun package--save-selected-packages (&optional value)
-  "Set and save `package-selected-packages' to VALUE.
-
-The variable is saved on ~/.emacs.d/package-selected-packages.el and its content is ordered alphabetically."
-  (when value
-    (setq package-selected-packages value))
-  ;; Sort alphabetically all symbols of package-selected-packages
-  (setf package-selected-packages (cl-sort package-selected-packages 'string-lessp))
-  (if after-init-time
-      (with-temp-file package-selected-packages-file
-        (insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
-    (add-hook 'after-init-hook #'package--save-selected-packages)))
 
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'init-lsp)
