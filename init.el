@@ -74,6 +74,11 @@
   (setq company-idle-delay 0)
   (setq company-dabbrev-downcase nil))
 
+(use-package yasnippet
+    :ensure t
+    :commands yas-minor-mode
+    :hook ((prog-mode . yas-minor-mode)))
+
 (use-package company-anaconda
   :ensure t
   :config
