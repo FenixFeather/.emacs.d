@@ -58,3 +58,7 @@
 (use-package lsp-ivy :ensure t :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :ensure t :commands lsp-treemacs-errors-list)
 
+;; Java
+(use-package lsp-java
+    :ensure t
+    :config (add-hook 'java-mode-hook #'lsp))
