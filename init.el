@@ -335,7 +335,7 @@
 (menu-bar-mode -1)
 
 ;; Whitespace
-(setq whitespace-style '(face trailing lines tabs big-indent empty))
+(setq whitespace-style '(face trailing lines-tail tabs big-indent empty))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;;;Windows backup
@@ -367,6 +367,13 @@
 (if (eq system-type 'windows-nt)
     (setq custom-file "~/.emacs.d/custom-windows.el")
   (setq custom-file "~/.emacs.d/custom.el"))
+
+(customize-set-variable 'display-buffer-base-action
+  '((display-buffer-reuse-window display-buffer-same-window)
+    (reusable-frames . t)))
+
+;; avoid resizing
+(customize-set-variable 'even-window-sizes nil)
 
 (setq package-selected-packages-file "~/.emacs.d/package-selected-packages.el")
 
