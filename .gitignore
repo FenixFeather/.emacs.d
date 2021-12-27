@@ -21,3 +21,6 @@ transient/
 /.lsp-session-v1
 /.cache/
 /recentf
+/.dap-breakpoints
+/eclipse.jdt.ls/
+/workspace/

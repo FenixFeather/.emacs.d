@@ -378,7 +378,8 @@ The variable is saved on ~/.emacs.d/package-selected-packages.el and its content
         (insert (format "(setf package-selected-packages '%s)" package-selected-packages)))
     (add-hook 'after-init-hook #'package--save-selected-packages)))
 
-(load-file "~/.emacs.d/lsp.el")
-(load-file "~/.emacs.d/evil.el")
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'init-lsp)
+(require 'init-evil)
 (load custom-file :noerror)
 (load package-selected-packages-file :noerror)

@@ -4,6 +4,7 @@
 ;; For key suggestions when typing key commands
 (use-package which-key
     :hook ((after-init . which-key-mode))
+    :bind (("C-h M" . which-key-show-keymap))
     :ensure t)
 
 ;; treemacs
@@ -51,7 +52,7 @@
     :hook ((c-mode-common . lsp)
            (lsp-mode . lsp-enable-which-key-integration)
            (c++-mode . lsp))
-    :commands lsp lsp-command-map
+    :commands lsp
     :config)
 
 (use-package lsp-ui :ensure t :commands lsp-ui-mode)
@@ -62,3 +63,5 @@
 (use-package lsp-java
     :ensure t
     :config (add-hook 'java-mode-hook #'lsp))
+
+(provide 'init-lsp)
