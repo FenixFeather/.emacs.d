@@ -6,6 +6,9 @@
     (remove-hook 'magit-credential-hook 'ssh-agency-ensure))
   (setenv "SSH_ASKPASS" "git-gui--askpass"))
 
+(setq w32-lwindow-modifier 'super)
+(w32-register-hot-key [s-])
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
