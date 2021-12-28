@@ -15,6 +15,7 @@
     (treemacs-resize-icons 44)
     (treemacs-follow-mode)
     (treemacs-indent-guide-mode)
+    (setq treemacs-default-visit-action 'treemacs-visit-node-in-most-recently-used-window)
     (treemacs-hide-gitignored-files-mode t))
 
 (use-package all-the-icons-ivy
@@ -26,6 +27,10 @@
     :config
     (treemacs-resize-icons 44)
     (treemacs-load-theme "all-the-icons"))
+
+(use-package solaire-mode
+    :ensure t
+    :hook ((after-init . solaire-global-mode)))
 
 (use-package perspective
     :ensure t
