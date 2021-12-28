@@ -79,6 +79,9 @@
     :commands yas-minor-mode
     :hook ((prog-mode . yas-minor-mode)))
 
+(use-package yasnippet-snippets
+    :ensure t)
+
 (use-package company-anaconda
   :ensure t
   :config

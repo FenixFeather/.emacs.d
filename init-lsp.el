@@ -78,6 +78,8 @@
 ;; Java
 (use-package lsp-java
     :ensure t
-    :config (add-hook 'java-mode-hook #'lsp))
+    :config (add-hook 'java-mode-hook #'lsp)
+    :bind (:map lsp-command-map
+                ("j i" . lsp-java-add-import)))
 
 (provide 'init-lsp)
