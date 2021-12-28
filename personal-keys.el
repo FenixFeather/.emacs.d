@@ -34,6 +34,7 @@
      ("e n" . flycheck-next-error)
      ("r" . revert-buffer)
      ("e N" . flycheck-previous-error))
+    (bind-key "P" perspective-map space-map)
     (evil-define-key '(normal visual) 'global (kbd "SPC") space-map)
     (evil-define-key 'emacs 'global (kbd "s-SPC") space-map)
 
@@ -50,7 +51,8 @@
     (bind-keys
      :map treemacs-space-map
      ("r" . treemacs-refresh))
-    (define-two-prefix-keymaps treemacs-mode-map treemacs-space-map)
+    (set-keymap-parent treemacs-space-map space-map)
+    (bind-key "SPC" treemacs-space-map evil-treemacs-state-map)
  ))
 
 (provide 'personal-keys)

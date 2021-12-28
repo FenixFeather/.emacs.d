@@ -27,6 +27,12 @@
     (treemacs-resize-icons 44)
     (treemacs-load-theme "all-the-icons"))
 
+(use-package perspective
+    :ensure t
+    :config
+    (persp-mode)
+    (setq persp-sort 'created))
+
 (use-package frog-jump-buffer
     :ensure t
     :bind (("C-x C-b" . frog-jump-buffer)
@@ -42,8 +48,18 @@
     :config
     (setq frog-jump-buffer-use-all-the-icons-ivy t)
     (setq frog-jump-buffer-include-current-buffer nil)
+    (add-to-list 'frog-jump-buffer-filter-actions '("X" "[persp]" persp-is-current-buffer))
     (setq frog-jump-buffer-default-filter
-          'frog-jump-buffer-filter-file-buffers))
+          'persp-is-current-buffer))
+
+(use-package treemacs-perspective
+  :after (treemacs perspective) ;;or perspective vs. persp-mode
+  :ensure t
+  :config (treemacs-set-scope-type 'Perspectives))
+
+(use-package treemacs-evil
+    :after (treemacs evil)
+    :ensure t)
 
 ;; LSP-mode
 (use-package lsp-mode
