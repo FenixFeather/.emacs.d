@@ -2,6 +2,12 @@
   (evil-define-key '(normal visual) keymap (kbd "SPC") keymap-to-add)
   (evil-define-key 'emacs keymap (kbd "s-SPC") keymap-to-add))
 
+(defun split-window-ultrawide ()
+  (interactive)
+  (split-window-right 100)
+  (call-interactively 'other-window)
+  (split-window-right -100))
+
 (defun personal-keys-setup ()
   "Set up evil keybindings"
   (let ((space-map (make-sparse-keymap))
@@ -18,6 +24,7 @@
      ("b" . frog-jump-buffer)
      ("u" . pop-global-mark)
      ("q" . kill-buffer-and-window)
+     ("4" . split-window-ultrawide)
      ("3" . split-window-right)
      ("2" . split-window-below)
      ("1" . delete-other-windows)
@@ -38,8 +45,11 @@
     (define-two-prefix-keymaps lsp-mode-map lsp-space-map)
 
     ;; treemacs-space-map
-    (bind-key "w" treemacs-project-map treemacs-space-map)
-    (bind-key "p" treemacs-workspace-map treemacs-space-map)
+    (bind-key "p" treemacs-project-map treemacs-space-map)
+    (bind-key "w" treemacs-workspace-map treemacs-space-map)
+    (bind-keys
+     :map treemacs-space-map
+     ("r" . treemacs-refresh))
     (define-two-prefix-keymaps treemacs-mode-map treemacs-space-map)
  ))
 
