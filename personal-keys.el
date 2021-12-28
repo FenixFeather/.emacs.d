@@ -24,6 +24,10 @@
      ("b" . frog-jump-buffer)
      ("u" . pop-global-mark)
      ("q" . kill-buffer-and-window)
+
+     ("5 5" . query-replace)
+     ("5 r" . vr/query-replace)
+
      ("4" . split-window-ultrawide)
      ("3" . split-window-right)
      ("2" . split-window-below)

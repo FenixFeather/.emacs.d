@@ -265,7 +265,13 @@
   :ensure t
   :demand
   :bind (("C-M-$" . vr/replace)
-         ("C-M-%" . vr/query-replace)))
+         ("C-M-%" . vr/query-replace))
+  :config
+  (unless (executable-find "python")
+    (setq vr/command-python
+          (string-join
+           (cons "python3" (cdr (split-string vr/command-python " ")))
+           " "))))
 
 ;; vue
 (use-package vue-mode
