@@ -11,7 +11,6 @@
 (defun personal-keys-setup ()
   "Set up evil keybindings"
   (let ((space-map (make-sparse-keymap))
-        (lsp-space-map (make-sparse-keymap))
         (treemacs-space-map (make-sparse-keymap)))
 
     ;; Global space map
@@ -44,11 +43,12 @@
 
     ;; lsp-space-map
     (with-eval-after-load 'lsp-mode
-      (bind-keys
-       :map lsp-space-map
-       ("." . lsp-find-definition))
-      (bind-key "l" lsp-command-map lsp-space-map)
-      (define-two-prefix-keymaps lsp-mode-map lsp-space-map))
+      (let ((lsp-space-map (make-sparse-keymap)))
+        (bind-keys
+         :map lsp-space-map
+         ("." . lsp-find-definition))
+        (bind-key "l" lsp-command-map lsp-space-map)
+        (define-two-prefix-keymaps lsp-mode-map lsp-space-map)))
 
     ;; treemacs-space-map
     (bind-key "p" treemacs-project-map treemacs-space-map)
