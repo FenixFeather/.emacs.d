@@ -14,4 +14,8 @@
     (setq evil-normal-state-cursor '("peach puff" box))
     (personal-keys-setup))
 
+(use-package evil-commentary
+    :ensure t
+    :hook ((after-init . evil-commentary-mode)))
+
 (provide 'init-evil)
