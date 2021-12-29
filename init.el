@@ -6,6 +6,9 @@
 ;; use-package setup
 (require 'package)
 (setq package-enable-at-startup nil)
+
+;; Disable package-selected-packages
+(defun package--save-selected-packages (&rest opt) nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 
@@ -238,6 +241,11 @@
   :defer t
   :ensure t)
 
+;; Rainbow
+(use-package rainbow-delimiters
+    :ensure t
+    :hook ((prog-mode . rainbow-delimiters-mode)))
+
 ;; An atom-one-dark theme for smart-mode-line
 (use-package smart-mode-line-atom-one-dark-theme
   :ensure t)
@@ -335,7 +343,21 @@
            ("C-r" . undo-tree-redo))
     :hook ((after-init . global-undo-tree-mode)))
 
-;; Non-package options
+;; Lisp
+(setq lisp-indent-function 'common-lisp-indent-function)
+
+(use-package lispy
+    :ensure t
+    :hook ((emacs-lisp-mode . lispy-mode)))
+
+(use-package lispyville
+    :ensure t
+    :after (lispy)
+    :hook ((lispy-mode . lispyville-mode))
+    :config
+    (lispyville-set-key-theme '(operators c-w additional)))
+
+;; Misc
 (setq visible-bell 1)
 (electric-pair-mode 1)
 (show-paren-mode 1)
@@ -343,11 +365,7 @@
 (setq scroll-preserve-screen-position 'always)
 (setq comint-prompt-read-only t)
 (global-hl-line-mode +1)
-(setq lisp-indent-function 'common-lisp-indent-function)
 (setq-default indent-tabs-mode nil)
-
-(setq c-default-style "k&r"
-      c-basic-offset 4)
 
 (setq c-default-style "k&r"
       c-basic-offset 4)
@@ -406,9 +424,8 @@
 (customize-set-variable 'even-window-sizes nil)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
-(setq debug-on-error t)
-(require 'init-lsp)
-(require 'init-evil)
-(setq debug-on-error nil)
+(let ((debug-on-error t))
+  (mapcar 'require (list
+                    'init-evil
+                    'init-lsp)))
 (load custom-file :noerror)
-(load package-selected-packages-file :noerror)
