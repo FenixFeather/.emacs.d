@@ -53,11 +53,6 @@
     (setq frog-jump-buffer-default-filter
           'persp-is-current-buffer))
 
-(use-package treemacs-perspective
-  :after (treemacs perspective) ;;or perspective vs. persp-mode
-  :ensure t
-  :config (treemacs-set-scope-type 'Perspectives))
-
 (use-package treemacs-evil
     :after (treemacs evil)
     :ensure t)
