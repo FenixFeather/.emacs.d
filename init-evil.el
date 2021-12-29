@@ -17,5 +17,4 @@
 (use-package evil-commentary
     :ensure t
     :hook ((after-init . evil-commentary-mode)))
-
 (provide 'init-evil)

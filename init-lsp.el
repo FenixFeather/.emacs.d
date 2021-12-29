@@ -28,10 +28,6 @@
     (treemacs-resize-icons 44)
     (treemacs-load-theme "all-the-icons"))
 
-(use-package solaire-mode
-    :ensure t
-    :hook ((after-init . solaire-global-mode)))
-
 (use-package perspective
     :ensure t
     :config

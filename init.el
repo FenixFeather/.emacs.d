@@ -254,6 +254,35 @@
   (setq sml/no-confirm-load-theme t)
   (sml/setup))
 
+(use-package mini-modeline
+    :ensure t
+    :after smart-mode-line
+    :config
+    (setq mini-modeline-l-format
+          (list
+           ;; day and time
+           '(:eval (propertize (format-time-string " %b %d %H:%M ")
+                    'face 'font-lock-builtin-face))
+
+           ;; '(:eval (propertize (substring vc-mode 5)
+           ;;                     'face 'font-lock-comment-face))
+
+           ;; the buffer name; the file name as a tool tip
+           '(:eval (propertize " %b "
+                    'face
+                    (let ((face (and (buffer-file-name (buffer-base-buffer)) (buffer-modified-p))))
+                      (if face 'font-lock-warning-face
+                        'font-lock-type-face))
+                    'help-echo (buffer-file-name)))
+
+           ;; relative position, size of file
+           " ["
+           (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+           "/"
+           (propertize "%I" 'face 'font-lock-constant-face) ;; size
+           "] "))
+    (mini-modeline-mode t))
+
 ;; Smex
 (use-package smex
   :ensure t
