@@ -85,6 +85,7 @@
     :ensure t
     :config (add-hook 'java-mode-hook #'lsp)
     :bind (:map lsp-command-map
-                ("j i" . lsp-java-add-import)))
+                ("j i" . lsp-java-add-import)
+                ("j o" . lsp-java-organize-imports)))
 
 (provide 'init-lsp)
