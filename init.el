@@ -405,7 +405,7 @@
 ;; avoid resizing
 (customize-set-variable 'even-window-sizes nil)
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 (setq debug-on-error t)
 (require 'init-lsp)
 (require 'init-evil)
