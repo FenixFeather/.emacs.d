@@ -43,11 +43,12 @@
     (evil-define-key 'emacs 'global (kbd "s-SPC") space-map)
 
     ;; lsp-space-map
-    (bind-keys
-     :map lsp-space-map
-     ("." . lsp-find-definition))
-    (bind-key "l" lsp-command-map lsp-space-map)
-    (define-two-prefix-keymaps lsp-mode-map lsp-space-map)
+    (with-eval-after-load 'lsp-mode
+      (bind-keys
+       :map lsp-space-map
+       ("." . lsp-find-definition))
+      (bind-key "l" lsp-command-map lsp-space-map)
+      (define-two-prefix-keymaps lsp-mode-map lsp-space-map))
 
     ;; treemacs-space-map
     (bind-key "p" treemacs-project-map treemacs-space-map)
@@ -56,7 +57,6 @@
      :map treemacs-space-map
      ("r" . treemacs-refresh))
     (set-keymap-parent treemacs-space-map space-map)
-    (bind-key "SPC" treemacs-space-map evil-treemacs-state-map)
- ))
+    (evil-define-key '(normal visual motion treemacs) treemacs-mode-map (kbd "SPC") treemacs-space-map)))
 
 (provide 'personal-keys)

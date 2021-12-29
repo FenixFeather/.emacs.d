@@ -387,7 +387,9 @@
 (customize-set-variable 'even-window-sizes nil)
 
 (add-to-list 'load-path "~/.emacs.d/")
+(setq debug-on-error t)
 (require 'init-lsp)
 (require 'init-evil)
+(setq debug-on-error nil)
 (load custom-file :noerror)
 (load package-selected-packages-file :noerror)
