@@ -13,6 +13,7 @@
     (setq evil-emacs-state-cursor '("light slate blue" box))
     (setq evil-normal-state-cursor '("peach puff" box))
     (setq evil-insert-state-cursor '("peach puff" bar))
+    (setq evil-treemacs-state-cursor '("peach puff" box))
     (personal-keys-setup)
     (add-hook 'with-editor-mode-hook 'evil-insert-state))
 
