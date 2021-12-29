@@ -283,12 +283,6 @@
            "] "))
     (mini-modeline-mode t))
 
-;; Smex
-(use-package smex
-  :ensure t
-  :bind (("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command)))
-
 ;; toml
 (use-package toml-mode
   :ensure t
