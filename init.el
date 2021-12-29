@@ -233,10 +233,6 @@
     (flyspell-mode))
   (add-hook 'org-mode-hook 'my-org-mode-hook))
 
-;; Paredit
-(use-package paredit
-  :ensure t)
-
 ;; Powershell
 (use-package powershell
   :defer t
