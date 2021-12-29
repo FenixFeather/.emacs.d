@@ -50,6 +50,9 @@
         (bind-key "l" lsp-command-map lsp-space-map)
         (define-two-prefix-keymaps lsp-mode-map lsp-space-map)))
 
+    ;; magit
+    (with-eval-after-load 'magit (bind-key "SPC" space-map magit-mode-map))
+
     ;; treemacs-space-map
     (bind-key "p" treemacs-project-map treemacs-space-map)
     (bind-key "w" treemacs-workspace-map treemacs-space-map)
