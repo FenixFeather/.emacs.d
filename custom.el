@@ -24,6 +24,8 @@
  '(org-startup-truncated nil)
  '(reftex-cite-prompt-optional-args 'maybe)
  '(show-paren-mode t)
+ '(spacemacs-theme-comment-bg nil)
+ '(spacemacs-theme-comment-italic t)
  '(whitespace-line-column 140))
 
 (custom-set-faces

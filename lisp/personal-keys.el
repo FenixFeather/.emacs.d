@@ -1,3 +1,7 @@
+(require 'perspective)
+(require 'evil)
+(require 'treemacs)
+
 (defun define-two-prefix-keymaps (keymap keymap-to-add)
   (evil-define-key '(normal visual) keymap (kbd "SPC") keymap-to-add)
   (evil-define-key 'emacs keymap (kbd "s-SPC") keymap-to-add))
@@ -62,4 +66,5 @@
     (set-keymap-parent treemacs-space-map space-map)
     (evil-define-key '(normal visual motion treemacs) treemacs-mode-map (kbd "SPC") treemacs-space-map)))
 
+(personal-keys-setup)
 (provide 'personal-keys)

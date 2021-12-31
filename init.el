@@ -355,7 +355,7 @@
     :after (lispy)
     :hook ((lispy-mode . lispyville-mode))
     :config
-    (lispyville-set-key-theme '(operators c-w additional)))
+    (lispyville-set-key-theme '(operators c-w additional additional-insert)))
 
 ;; Misc
 (setq visible-bell 1)
@@ -425,7 +425,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (let ((debug-on-error t))
-  (mapcar 'require (list
-                    'init-evil
-                    'init-lsp)))
+ (mapcar 'require (list
+                   'init-evil
+		   'init-lsp)))
+
 (load custom-file :noerror)

@@ -2,6 +2,7 @@
 
 ;; which-key
 ;; For key suggestions when typing key commands
+(setq debug-on-error t)
 (use-package which-key
     :hook ((after-init . which-key-mode))
     :bind (("C-h M" . which-key-show-keymap))
@@ -37,6 +38,9 @@
     :config
     (persp-mode)
     (setq persp-sort 'created))
+
+(use-package perspective-treemacs
+    :after (treemacs perspective))
 
 (use-package frog-jump-buffer
     :ensure t
