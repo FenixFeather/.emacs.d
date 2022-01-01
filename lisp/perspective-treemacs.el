@@ -17,11 +17,13 @@
   (when nil
     `(apply 'message (list ,@args))))
 
+(defvar persp-treemacs--current-ws-name (treemacs-workspace->name (treemacs-current-workspace)))
+(defvar persp-treemacs--current-visibility (treemacs-current-visibility))
+(persp-make-variable-persp-local 'persp-treemacs--current-ws-name)
+(persp-make-variable-persp-local 'persp-treemacs--current-visibility)
+
 (defun perspective-treemacs--on-persp-mode ()
-  (defvar persp-treemacs--current-ws-name (treemacs-workspace->name (treemacs-current-workspace)))
-  (defvar persp-treemacs--current-visibility (treemacs-current-visibility))
-  (persp-make-variable-persp-local 'persp-treemacs--current-ws-name)
-  (persp-make-variable-persp-local 'persp-treemacs--current-visibility))
+  (perspective-treemacs--update-persp-ws-name))
 
 (defun perspective-treemacs--update-persp-ws-name (&rest _)
   (dm "Current perspective:")
