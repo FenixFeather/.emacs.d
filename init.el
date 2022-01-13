@@ -25,18 +25,27 @@
 (use-package diminish
   :ensure t)
 
+;; Set env vars properly
+(use-package exec-path-from-shell
+    :ensure t
+    :hook ((after-init . exec-path-from-shell-initialize))
+    :config
+    (setq exec-path-from-shell-variables '("NVM_BIN")))
+
 ;; Ace-window
 (use-package ace-window
-  :ensure t
-  :bind (("M-[" . ace-window)
-         ("M-o" . ace-window)
-         ("C-x o" . ace-window)))
+    :ensure t
+    :bind (("M-[" . ace-window)
+           ("M-o" . ace-window)
+           ("C-x o" . ace-window)))
 
 ;; Anaconda
 (use-package anaconda-mode
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode))
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (unless (executable-find "python")
+      (setq python-shell-interpreter "python3")))
 
 ;; Auctex
 (use-package tex
@@ -292,18 +301,24 @@
   :ensure t
   :mode "\\.toml\\'")
 
+;; typescript
+(use-package typescript-mode
+    :ensure t
+    :config
+    (setq typescript-indent-level 2))
+
 ;; visual-regexp-steroids
 (use-package visual-regexp-steroids
-  :ensure t
-  :demand
-  :bind (("C-M-$" . vr/replace)
-         ("C-M-%" . vr/query-replace))
-  :config
-  (unless (executable-find "python")
-    (setq vr/command-python
-          (string-join
-           (cons "python3" (cdr (split-string vr/command-python " ")))
-           " "))))
+    :ensure t
+    :demand
+    :bind (("C-M-$" . vr/replace)
+           ("C-M-%" . vr/query-replace))
+    :config
+    (unless (executable-find "python")
+      (setq vr/command-python
+            (string-join
+             (cons "python3" (cdr (split-string vr/command-python " ")))
+             " "))))
 
 ;; vue
 (use-package vue-mode

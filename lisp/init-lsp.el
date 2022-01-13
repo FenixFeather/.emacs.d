@@ -71,9 +71,10 @@
     :init
     :hook ((c-mode-common . lsp)
            (lsp-mode . lsp-enable-which-key-integration)
-           (c++-mode . lsp))
-    :commands lsp
-    :config)
+           (c++-mode . lsp)
+           (typescript-mode . lsp)
+           (ruby-mode . lsp))
+    :commands lsp)
 
 (use-package lsp-ui :ensure t :commands lsp-ui-mode)
 (use-package lsp-ivy :ensure t :commands lsp-ivy-workspace-symbol)

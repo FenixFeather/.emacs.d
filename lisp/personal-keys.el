@@ -1,6 +1,7 @@
 (require 'perspective)
 (require 'evil)
 (require 'treemacs)
+(require 'lsp)
 
 (defun define-two-prefix-keymaps (keymap keymap-to-add)
   (evil-define-key '(normal visual) keymap (kbd "SPC") keymap-to-add)
