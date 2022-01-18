@@ -35,9 +35,11 @@
 
 (use-package perspective
     :ensure t
+    :hook ((kill-emacs . persp-state-save))
     :config
     (persp-mode)
-    (setq persp-sort 'created))
+    (setq persp-sort 'created)
+    (setq persp-state-default-file "~/.emacs.d/.cache/persp-persist"))
 
 (use-package perspective-treemacs
     :after (treemacs perspective))
