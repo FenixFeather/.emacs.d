@@ -343,13 +343,23 @@
   :ensure t)
 
 ;; theme
+(defmacro maybe-daemon (&rest args)
+  "Run in both daemon and non-daemon mode"
+  (if (daemonp)
+      `(add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (select-frame frame)
+                  ,@args))
+    `(progn ,@args)))
+
+(when (eq system-type 'darwin)
+  (maybe-daemon
+   (load-file "~/.emacs.d/lisp/mac-os.el")))
+
 (use-package spacemacs-theme
   :ensure t
   :defer t
-  :init (add-hook 'after-make-frame-functions
-                  (lambda (frame)
-                    (select-frame frame)
-                    (load-theme 'spacemacs-dark t))))
+  :init (maybe-daemon (load-theme 'spacemacs-dark t)))
 
 ;; undo-tree
 (use-package undo-tree
@@ -357,6 +367,9 @@
     :bind (("M-/" . undo-tree-undo)
            ("C-r" . undo-tree-redo))
     :hook ((after-init . global-undo-tree-mode)))
+
+(use-package xonsh-mode
+    :ensure t)
 
 ;; Lisp
 (setq lisp-indent-function 'common-lisp-indent-function)
