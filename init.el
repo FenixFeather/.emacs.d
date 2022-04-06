@@ -30,7 +30,7 @@
     :ensure t
     :hook ((after-init . exec-path-from-shell-initialize))
     :config
-    (setq exec-path-from-shell-variables '("NVM_BIN")))
+    (setq exec-path-from-shell-variables '("PATH" "NVM_BIN")))
 
 ;; Ace-window
 (use-package ace-window

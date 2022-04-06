@@ -85,9 +85,19 @@
 ;; Java
 (use-package lsp-java
     :ensure t
-    :config (add-hook 'java-mode-hook #'lsp)
+    :hook (java-mode . lsp)
     :bind (:map lsp-command-map
                 ("j i" . lsp-java-add-import)
-                ("j o" . lsp-java-organize-imports)))
+                ("j o" . lsp-java-organize-imports))
+    :config
+    (setq lsp-java-vmargs
+          (list
+           "-Xmx4G"
+           "-XX:+UseG1GC"
+           "-XX:+UseStringDeduplication"
+           ;; Download lombok.jar from https://projectlombok.org/download and put it at this path
+           (concat "-javaagent:" (expand-file-name "~/lombok.jar"))))
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.bemol\\'")
+    (setq lsp-java-project-resource-filters ["node_modules" ".metadata" "archetype-resources" "META-INF/maven" "runtime" "env"]))
 
 (provide 'init-lsp)

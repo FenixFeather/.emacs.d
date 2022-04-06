@@ -41,6 +41,7 @@
      ("k" . (lambda () (interactive) (kill-buffer (current-buffer))))
      ("C-g" . keyboard-quit)
      ("e n" . flycheck-next-error)
+     ("e e" . flycheck-explain-error-at-point)
      ("r" . revert-buffer)
      ("e N" . flycheck-previous-error))
     (bind-key "P" perspective-map space-map)
@@ -48,13 +49,12 @@
     (evil-define-key 'emacs 'global (kbd "s-SPC") space-map)
 
     ;; lsp-space-map
-    (with-eval-after-load 'lsp-mode
-      (let ((lsp-space-map (make-sparse-keymap)))
-        (bind-keys
-         :map lsp-space-map
-         ("." . lsp-find-definition))
-        (bind-key "l" lsp-command-map lsp-space-map)
-        (define-two-prefix-keymaps lsp-mode-map lsp-space-map)))
+    (let ((lsp-space-map (make-sparse-keymap)))
+      (bind-keys
+       :map lsp-space-map
+       ("." . lsp-find-definition))
+      (bind-key "l" lsp-command-map lsp-space-map)
+      (define-two-prefix-keymaps lsp-mode-map lsp-space-map))
 
     ;; magit
     (with-eval-after-load 'magit (bind-key "SPC" space-map magit-mode-map))
