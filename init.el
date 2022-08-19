@@ -39,6 +39,10 @@
            ("M-o" . ace-window)
            ("C-x o" . ace-window)))
 
+;; amx
+(use-package amx
+    :ensure t)
+
 ;; Anaconda
 (use-package anaconda-mode
     :ensure t
