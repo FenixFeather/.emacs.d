@@ -127,10 +127,16 @@
   :mode "\\.js\\'"
   :ensure t)
 
+;; dirvish
+(use-package dirvish
+    :ensure t
+    :config
+    (dirvish-override-dired-mode))
+
 ;; JavaScript
 (use-package js2-mode
-  :defer t
-  :ensure t)
+    :defer t
+    :ensure t)
 
 (use-package json-mode
   :mode ("\\.eslintrc.*$" "\\.babelrc$")
