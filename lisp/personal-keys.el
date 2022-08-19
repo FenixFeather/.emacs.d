@@ -29,6 +29,7 @@
      ("u" . pop-global-mark)
      ("q" . kill-buffer-and-window)
      ("f" . counsel-find-file)
+     ("h" . mark-whole-buffer)
 
      ("5 5" . query-replace)
      ("5 r" . vr/query-replace)
