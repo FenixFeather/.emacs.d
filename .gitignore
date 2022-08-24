@@ -24,3 +24,6 @@ transient/
 /.dap-breakpoints
 /eclipse.jdt.ls/
 /workspace/
+/amx-items
+/#init.el#
+/url/

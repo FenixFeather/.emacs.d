@@ -19,8 +19,13 @@
 
 (defvar persp-treemacs--current-ws-name (treemacs-workspace->name (treemacs-current-workspace)))
 (defvar persp-treemacs--current-visibility (treemacs-current-visibility))
-(persp-make-variable-persp-local 'persp-treemacs--current-ws-name)
-(persp-make-variable-persp-local 'persp-treemacs--current-visibility)
+(defun persp-treemacs--setup-vars ()
+    (persp-make-variable-persp-local 'persp-treemacs--current-ws-name)
+    (persp-make-variable-persp-local 'persp-treemacs--current-visibility))
+
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook 'persp-treemacs--setup-vars)
+  (add-hook 'after-init-hook 'persp-treemacs--setup-vars))
 
 (defun perspective-treemacs--on-persp-mode ()
   (perspective-treemacs--update-persp-ws-name))
