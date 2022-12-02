@@ -22,6 +22,9 @@
    (setq use-package-always-ensure t)
    (require 'use-package)))
 
+(unless (executable-find "python")
+      (setq python-shell-interpreter "python3"))
+
 (use-package diminish
   :ensure t)
 
@@ -42,14 +45,6 @@
 ;; amx
 (use-package amx
     :ensure t)
-
-;; Anaconda
-(use-package anaconda-mode
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'anaconda-mode)
-    (unless (executable-find "python")
-      (setq python-shell-interpreter "python3")))
 
 ;; Auctex
 (use-package tex
@@ -270,46 +265,16 @@
   :ensure t)
 
 ;; smart-line-mode
-(use-package smart-mode-line
-  :ensure t
-  :config
-  (setq sml/theme 'atom-one-dark)
-  (setq sml/no-confirm-load-theme t)
-  (sml/setup))
-
-(use-package mini-modeline
+(use-package doom-modeline
     :ensure t
-    :after smart-mode-line
+    :init (doom-modeline-mode 1)
     :config
-    (setq mini-modeline-l-format
-          (list
-           ;; day and time
-           '(:eval (propertize (format-time-string " %b %d %H:%M ")
-                    'face 'font-lock-builtin-face))
-
-           ;; '(:eval (propertize (substring vc-mode 5)
-           ;;                     'face 'font-lock-comment-face))
-
-           ;; the buffer name; the file name as a tool tip
-           '(:eval (propertize " %b "
-                    'face
-                    (let ((face (and (buffer-file-name (buffer-base-buffer)) (buffer-modified-p))))
-                      (if face 'font-lock-warning-face
-                        'font-lock-type-face))
-                    'help-echo (buffer-file-name)))
-
-           ;; relative position, size of file
-           " ["
-           (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-           "/"
-           (propertize "%I" 'face 'font-lock-constant-face) ;; size
-           "] "))
-    (mini-modeline-mode t))
+    (setq doom-modeline-hud t))
 
 ;; toml
 (use-package toml-mode
-  :ensure t
-  :mode "\\.toml\\'")
+    :ensure t
+    :mode "\\.toml\\'")
 
 ;; typescript
 (use-package typescript-mode

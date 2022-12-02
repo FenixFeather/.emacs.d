@@ -17,6 +17,7 @@
     (treemacs-follow-mode)
     (treemacs-indent-guide-mode)
     (setq treemacs-default-visit-action 'treemacs-visit-node-in-most-recently-used-window)
+    (setq treemacs-collapse-dirs 10)
     (treemacs-hide-gitignored-files-mode t))
 
 (use-package all-the-icons-ivy
@@ -47,11 +48,6 @@
 (use-package frog-jump-buffer
     :ensure t
     :bind (("C-x C-b" . frog-jump-buffer)
-           ("C-x b" . (lambda ()
-                        (interactive)
-                        (let ((frog-jump-buffer-default-filter
-                               'frog-jump-buffer-filter-all))
-                          (frog-jump-buffer))))
            ("C-<tab>" . frog-jump-buffer)
            ("C-x k" . (lambda ()
                         (interactive)
@@ -98,6 +94,32 @@
            ;; Download lombok.jar from https://projectlombok.org/download and put it at this path
            (concat "-javaagent:" (expand-file-name "~/lombok.jar"))))
     (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.bemol\\'")
+    (add-to-list 'lsp-file-watch-ignored-directories "/build/private")
+    (add-to-list 'lsp-file-watch-ignored-directories "/build/src-files")
+    (add-to-list 'lsp-file-watch-ignored-directories "/build/brazil-documentation")
+    (add-to-list 'lsp-file-watch-ignored-directories "/node_modules")
+    (add-to-list 'lsp-file-watch-ignored-directories "/dist")
+    (add-to-list 'lsp-file-watch-ignored-directories "/.git")
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]eclipse-bin")
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.bemol/.+/javadoc")
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]env")
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]out")
     (setq lsp-java-project-resource-filters ["node_modules" ".metadata" "archetype-resources" "META-INF/maven" "runtime" "env"]))
+
+;; Kotlin
+(use-package kotlin-mode
+    :ensure t)
+
+
+;; Python
+(use-package lsp-pyright
+    :ensure t
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (lsp))))
+
+;; Groovy
+(use-package groovy-mode
+    :ensure t)
 
 (provide 'init-lsp)
